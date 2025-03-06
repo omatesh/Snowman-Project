@@ -28,6 +28,7 @@ def snowman(snowman_word):
     while waiting_for_correct_lengths and len(wrong_guesses_list) < SNOWMAN_MAX_WRONG_GUESSES:
 
         user_input_letter = get_letter_from_user(correct_letter_guess_statuses, wrong_guesses_list)
+        
         if user_input_letter in correct_letter_guess_statuses:
             print("You guessed a letter that's in the word!")
             correct_guesses += 1
@@ -39,11 +40,14 @@ def snowman(snowman_word):
             print(f"The letter {user_input_letter} is not in the word")
             wrong_guesses_list.append(user_input_letter)
             print_snowman_graphic(len(wrong_guesses_list))
+            print(f"You guessed wrong {len(wrong_guesses_list)} times. Here is a list of wrong guesses:")
+            print(f"{wrong_guesses_list}")
             
         
         if (is_word_guessed(snowman_word, correct_letter_guess_statuses)):
             print(f"Congratulations, you win!")
             waiting_for_correct_lengths = False
+        
         elif len(wrong_guesses_list) == SNOWMAN_MAX_WRONG_GUESSES:
             print(f"Sorry, you lose! The word was {snowman_word}")
 
